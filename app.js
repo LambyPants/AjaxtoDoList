@@ -26,8 +26,11 @@ app.get("/todos", function(req, res){
   Todo.find({}, function(err, todos){
     if(err){
       console.log(err);
+    } else { if(req.xhr){ 
+     res.json(todos);
     } else {
       res.render("index", {todos: todos}); 
+    }
     }
   })
 });
@@ -42,8 +45,9 @@ app.post("/todos", function(req, res){
  Todo.create(formData, function(err, newTodo){
     if(err){
       res.render("new");
-    } else {
-        res.redirect("/todos");
+    } else {  
+    res.json(newTodo);
+        
     }
   });
 });
@@ -64,23 +68,30 @@ app.put("/todos/:id", function(req, res){
    if(err){
      console.log(err);
    } else {
+       if(req.xhr){ 
+           res.json(todo)
+       } else {
       res.redirect('/');
+       }
    }
  });
 });
 
 app.delete("/todos/:id", function(req, res){
- Todo.findById(req.params.id, function(err, todo){
+ Todo.findByIdAndRemove(req.params.id, function(err, todo){
    if(err){
      console.log(err);
    } else {
-      todo.remove();
+      if(req.xhr){ 
+          res.json(todo)
+      } else {
       res.redirect("/todos");
+      }
    }
  }); 
 });
 
-
-app.listen(3000, function() {
-  console.log('Server running on port 3000');
+app.listen(process.env.PORT, process.env.IP, function(){
+ 
+  console.log('Server running on Cloud9');
 });
