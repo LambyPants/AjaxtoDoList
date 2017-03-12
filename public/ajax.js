@@ -1,3 +1,5 @@
+
+//CREATE
 $('#newToDoForm').submit(function(e){
  e.preventDefault();
  var toDoItem = $(this).serialize();
@@ -16,9 +18,9 @@ $('#newToDoForm').submit(function(e){
 						${data.text}
 					</span>
 					<div class="pull-right">
-						<button class="btn btn-sm btn-warning edit-button" >Edit</button>
+						<button class="btn btn-sm btn-warning edit-button" ><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></button>
 						<form style="display: inline" method="POST" action="/todos/${data._id}" class="delete-item-form">
-							<button type="submit" class="btn btn-sm btn-danger ">Delete</button>
+							<button type="submit" class="btn btn-sm btn-danger "><span><i class="fa fa-trash" aria-hidden="true"></i></span></button>
 						</form>
 					</div>
 					<div class="clearfix"></div>
@@ -35,7 +37,7 @@ $('#to-do-list').on('click', '.edit-button', function(){
 	$(this).parent().siblings('.edit-item-form').toggle();
 });
 
-//PUT Request
+//UPDATE Request
 $('#to-do-list').on('submit', '.edit-item-form', function(e){
 	e.preventDefault();
 	var toDoItem = $(this).serialize();
@@ -60,9 +62,9 @@ $('#to-do-list').on('submit', '.edit-item-form', function(e){
 						${data.text}
 					</span>
 					<div class="pull-right">
-						<button class="btn btn-sm btn-warning edit-button">Edit</button>
+						<button class="btn btn-sm btn-warning edit-button"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></button>
 						<form style="display: inline" method="POST" action="/todos/${data._id}" class="delete-item-form">
-							<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+							<button type="submit" class="btn btn-sm btn-danger"><span><i class="fa fa-trash" aria-hidden="true"></i></span></button>
 						</form>
 					</div>
 					<div class="clearfix"></div>
