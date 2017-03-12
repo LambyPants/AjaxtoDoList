@@ -85,7 +85,9 @@ $('#to-do-list').on('submit', '.edit-item-form', function(e){
 							type: 'DELETE',
 							itemToDelete: $(itemToDelete),
 							success: function(data){
-								this.itemToDelete.remove();
+								this.itemToDelete.fadeOut(500, function(){
+									remove();
+								})
 							}							
 						})
 						
@@ -95,6 +97,14 @@ $('#to-do-list').on('submit', '.edit-item-form', function(e){
 					}
 					
 				});
+				
+// 				$("ul").on("click", "span", function(event){
+//   $(this).parent().fadeOut(500, function(){
+//     $(this).remove();
+//   });
+//   event.stopPropagation();
+// });
+
 
 //NOTES:
 

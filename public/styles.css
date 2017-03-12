@@ -1,6 +1,59 @@
 body {
-  padding-top: 80px;
+padding-top: 80px;
+font-family: Roboto;
+background: #70e1f5; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #70e1f5 , #ffd194); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #70e1f5 , #ffd194); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 .edit-item-form {
  display: none;
+}
+
+#new-item {
+  font-size: 18px;
+  background: #f7f7f7;
+  width: 100%;
+  padding: 13px 13px 13px 20px;
+  box-sizing: border-box;
+  color: cornflowerblue;
+}
+
+#new-item:focus{
+  background: white;
+  border: 3px solid cornflowerblue;
+  outline: none;
+}
+
+.btn-danger {
+    font-size: 20px;
+  margin-right: 5px;
+  text-align: center;
+  color: white;
+  width: 0px;
+  display: inline-block;
+  transition: 0.2s linear;
+  opacity: 0;
+}
+
+li:hover .btn-danger{
+ width: 40px;
+  opacity: 1;   
+}
+li:hover .btn-warning{
+ width: 40px;
+  opacity: 1;   
+}
+    
+
+
+.btn-warning {
+     font-size: 20px;
+  margin-right: 5px;
+  text-align: center;
+  color: white;
+  width: 0px;
+  display: inline-block;
+  transition: 0.2s linear;
+  opacity: 0;
 }
