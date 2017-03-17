@@ -88,7 +88,7 @@ $('#to-do-list').on('submit', '.edit-item-form', function(e){
 							itemToDelete: $(itemToDelete),
 							success: function(data){
 								this.itemToDelete.fadeOut(500, function(){
-									remove();
+									$(this).remove();
 								})
 							}							
 						})
@@ -99,6 +99,38 @@ $('#to-do-list').on('submit', '.edit-item-form', function(e){
 					}
 					
 				});
+				
+	$('#search').on('input', function(e) {
+    e.preventDefault();
+    $.get(`/todos?keyword=${e.target.value}`, function(data) {
+        $('#to-do-list').html('');
+        data.forEach(function(todo){
+            $('#to-do-list').append(
+                `
+                <li class="list-group-item">
+                    <form action="/todos/${todo._id}" method="POST" class="edit-item-form">
+                        <div class="form-group">
+                            <label for="${todo._id}">Item Text</label>
+                            <input type="text" value="${todo.text}" name="todo[text]" class="form-control" id="${todo._id}">
+                        </div>
+                        <button class="btn btn-primary">Update Item</button>
+                    </form>
+                    <span class="lead">
+                        ${todo.text}
+                    </span>
+                    <div class="pull-right">
+                        <button class="btn btn-sm btn-warning edit-button">Edit</button>
+                        <form style="display: inline" method="POST" action="/todos/${todo._id}" class="delete-item-form">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                `
+                );
+        });
+    });
+});
 				
 // 				$("ul").on("click", "span", function(event){
 //   $(this).parent().fadeOut(500, function(){
